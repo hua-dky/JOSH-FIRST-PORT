@@ -2,51 +2,112 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv=" X-UA-Compatible" content="IE-edge">      
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ralph Joshua | Portfolio</title>
     <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <nav class="navbar">
-        <a href="#" class="logo">Portfolio.</a>
-        <ul>
-            <li class="active"><a href="#">Home</a> </li>
-            <li><a href="#">About</a> </li>
-            <li><a href="#">Resume</a> </li>
-            <li><a href="#">Service</a> </li>
-            <li><a href="#">Contact</a> </li>
+        <a href="#home" class="logo">PORTFOLIO</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+        <ul id="nav-links">
+            <li class="active"><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#service">Service</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
-
     </nav>
-    
-    <section class="home">
+
+    <div class="bars-animation">
+        <div class="bar" style="--i:6;"></div>
+        <div class="bar" style="--i:5;"></div>
+        <div class="bar" style="--i:4;"></div>
+        <div class="bar" style="--i:3;"></div>
+        <div class="bar" style="--i:2;"></div>
+        <div class="bar" style="--i:1;"></div>
+    </div>
+
+    <section class="home" id="home">
         <div class="home-info">
             <h1>Ralph Joshua</h1>
-            <h2>I'm a Student</h2>
+            <h2>I'm a
+                <span style="--i:4;" data-text="Student">Student</span>
+                <span style="--i:3;" data-text="Photographer">Photographer</span>
+                <span style="--i:2;" data-text="Programmer">Programmer</span>
+                <span style="--i:1;" data-text="Gamer">Gamer</span>
+            </h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi animi voluptate id distinctio! Ratione, assumenda libero. Exercitationem maiores qui ut laborum facilis maxime ducimus cum cumque. Ipsa deserunt fugiat neque?</p>
             <div class="btn-sci">
                 <a href="#" class="btn">Download CV</a>
                 <div class="sci">
-                    <a href="#"><iconify-icon icon="grommet-icons:github"></iconify-icon></a>
-                    <a href="#"><iconify-icon icon="grommet-icons:facebook"></iconify-icon></a>
-                    <a href="#"><iconify-icon icon="grommet-icons:instagram"></iconify-icon></a>
+                    <a href="https://github.com/hua-dky" target="_blank" rel="noopener noreferrer">
+                        <iconify-icon icon="grommet-icons:github"></iconify-icon></a>
+                    <a href="https://www.facebook.com/Hua.Dyk/" target="_blank" rel="noopener noreferrer">
+                        <iconify-icon icon="grommet-icons:facebook"></iconify-icon></a>
+                    <a href="https://www.instagram.com/hua.dky" target="_blank" rel="noopener noreferrer">
+                        <iconify-icon icon="grommet-icons:instagram"></iconify-icon></a>
                     <a href="#"><iconify-icon icon="radix-icons:discord-logo"></iconify-icon></a>
-                </div> 
+                </div>
             </div>
         </div>
-        
 
         <div class="home-img">
             <div class="img-box">
                 <div class="img-item">
-                    <img src="home.jpg" alt="">
+                    <img src="home.jpg" alt="Ralph Joshua">
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="section" id="about">
+        <h2 class="heading">About <span>Me</span></h2>
+        <p>Write a short introduction about yourself here: who you are, what you study, and what you love doing.</p>
+    </section>
+
+    <section class="section" id="resume">
+        <h2 class="heading">My <span>Resume</span></h2>
+        <p>Add your education, skills and experience here.</p>
+    </section>
+
+    <section class="section" id="service">
+        <h2 class="heading">My <span>Services</span></h2>
+        <p>List what you offer, such as photography, programming or web design.</p>
+    </section>
+
+    <section class="section" id="contact">
+        <h2 class="heading">Contact <span>Me</span></h2>
+        <p>Add your email or a contact form here.</p>
+    </section>
+
+    <footer class="footer">&copy; 2026 Ralph Joshua. All rights reserved.</footer>
+
+    <script>
+        const toggle = document.getElementById('menu-toggle');
+        const links = document.getElementById('nav-links');
+
+        toggle.addEventListener('click', () => links.classList.toggle('open'));
+
+
+        links.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => links.classList.remove('open'));
+        });
+
+        const sections = document.querySelectorAll('section[id]');
+        const items = links.querySelectorAll('li');
+        window.addEventListener('scroll', () => {
+            let current = 'home';
+            sections.forEach(s => {
+                if (window.scrollY >= s.offsetTop - 140) current = s.id;
+            });
+            items.forEach(li => {
+                li.classList.toggle('active', li.firstElementChild.getAttribute('href') === '#' + current);
+            });
+        });
+    </script>
 </body>
 </html>
